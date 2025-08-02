@@ -35,4 +35,5 @@ pids
 
 # OS
 .DS_Store
-Thumbs.db
+Thumbs.dbserver/.env
+server/.env
