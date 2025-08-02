@@ -1,293 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guardian Shield - Women's Safety Platform</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardian Shield - Women's Safety Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Loading Overlay -->
-  <div class="loading-overlay" id="loadingOverlay">
-    <div class="loader"></div>
-  </div>
+    <!-- Clean Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>Guardian Shield</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
 
-  <!-- Animated Background -->
-  <div class="animated-bg"></div>
+            <div class="nav-auth">
+                <button id="loginBtn" class="auth-btn login" onclick="showLoginModal()">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button id="registerBtn" class="auth-btn register" onclick="showRegisterModal()">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+                <div id="userProfile" class="user-profile" style="display: none;">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span id="userName" class="user-name"></span>
+                    <button onclick="logout()" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
 
-  <header>
-    <nav id="navbar">
-      <div class="container">
-        <h1><i class="fas fa-shield-alt"></i> Guardian Shield</h1>
-        <div class="menu-toggle" id="menuToggle">
-          <span></span>
-          <span></span>
-          <span></span>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <ul id="navMenu">
-          <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-          <li><a href="#features"><i class="fas fa-star"></i> Features</a></li>
-          <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
-          <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-      </div>
     </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="floating-element">
-      <i class="fas fa-shield-alt" style="font-size: 100px; color: rgba(255,255,255,0.1);"></i>
-    </div>
-    <div class="floating-element">
-      <i class="fas fa-heart" style="font-size: 80px; color: rgba(255,255,255,0.1);"></i>
-    </div>
-    <div class="floating-element">
-      <i class="fas fa-lock" style="font-size: 90px; color: rgba(255,255,255,0.1);"></i>
-    </div>
-    
-    <div class="hero-content">
-      <h2>Empowering Women's Safety Through Innovation</h2>
-      <p>Experience next-generation security with AI-powered protection, real-time monitoring, and instant emergency response systems designed exclusively for women's safety.</p>
-      <div class="hero-buttons">
-        <a href="#features" class="btn">
-          <i class="fas fa-rocket"></i>
-          Explore Features
-        </a>
-        <a href="#contact" class="btn btn-secondary">
-          <i class="fas fa-download"></i>
-          Download App
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Features Section -->
-  <section id="features" class="features">
-    <div class="container">
-      <h2>Revolutionary Safety Features</h2>
-      <p class="features-subtitle">Cutting-edge technology designed to keep you safe, secure, and connected at all times</p>
-      
-      <div class="features-grid">
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
-          <h3>Smart Location Tracking</h3>
-          <p>Advanced GPS technology with machine learning algorithms that predict and navigate away from high-risk areas while maintaining your privacy and security.</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Your <span class="gradient-text">Guardian Shield</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Advanced women's safety platform with AI-powered protection, 
+                    real-time monitoring, and instant emergency response.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToFeatures()">
+                        <i class="fas fa-rocket"></i>
+                        Get Started
+                    </button>
+                    <button class="btn btn-secondary" onclick="downloadApp()">
+                        <i class="fas fa-download"></i>
+                        Download App
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="safety-circle">
+                    <div class="pulse-ring"></div>
+                    <div class="safety-icon-center">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
+    </section>
+
+    <!-- Emergency Quick Access -->
+    <div id="emergencyPanel" class="emergency-panel">
+        <button class="emergency-toggle" onclick="toggleEmergencyPanel()">
             <i class="fas fa-exclamation-triangle"></i>
-          </div>
-          <h3>Instant Emergency Response</h3>
-          <p>One-touch emergency activation that instantly alerts your trusted contacts, nearby authorities, and our 24/7 monitoring center with your precise location.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-route"></i>
-          </div>
-          <h3>AI-Powered Safe Routes</h3>
-          <p>Intelligent route optimization using real-time crime data, lighting conditions, and crowd density to suggest the safest pathways to your destination.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3>Community Network</h3>
-          <p>Connect with verified community members and safety advocates in your area for mutual support and real-time safety updates.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3>Behavioral Analysis</h3>
-          <p>AI-driven behavior recognition that detects unusual patterns and potential threats, providing proactive safety alerts and recommendations.</p>
-        </div>
-        
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-moon"></i>
-          </div>
-          <h3>24/7 Monitoring</h3>
-          <p>Round-the-clock professional monitoring service with trained safety specialists ready to respond to any emergency situation immediately.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Statistics Section -->
-  <section class="stats">
-    <div class="container">
-      <h2 style="font-size: 3rem; font-weight: 800; margin-bottom: 20px; color: white;">Making a Real Difference</h2>
-      <p style="font-size: 1.3rem; opacity: 0.9; margin-bottom: 60px;">Our impact in numbers speaks volumes about our commitment to women's safety</p>
-      
-      <div class="stats-grid">
-        <div class="stat-item">
-          <span class="stat-number">500K+</span>
-          <span class="stat-label">Women Protected Daily</span>
-        </div>
-        
-        <div class="stat-item">
-          <span class="stat-number">99.9%</span>
-          <span class="stat-label">Emergency Response Rate</span>
-        </div>
-        
-        <div class="stat-item">
-          <span class="stat-number">150+</span>
-          <span class="stat-label">Cities Covered</span>
-        </div>
-        
-        <div class="stat-item">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label">Professional Monitoring</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="testimonials">
-    <div class="container">
-      <h2>Voices of Empowerment</h2>
-      
-      <div class="testimonials-grid">
-        <div class="testimonial-item">
-          <p class="testimonial-text">"Guardian Shield has completely transformed how I feel about walking alone at night. The AI-powered route suggestions and instant emergency features give me confidence I never had before."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">S</div>
-            <div class="author-info">
-              <h4>Sarah Johnson</h4>
-              <p>University Student</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial-item">
-          <p class="testimonial-text">"As a working professional who travels frequently, this app has become my essential companion. The community network feature helped me connect with local safety advocates in every city I visit."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div class="author-info">
-              <h4>Maria Rodriguez</h4>
-              <p>Business Consultant</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial-item">
-          <p class="testimonial-text">"The peace of mind this app provides is invaluable. My family feels secure knowing I have professional monitoring and instant emergency response at my fingertips 24/7."</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">A</div>
-            <div class="author-info">
-              <h4>Aisha Patel</h4>
-              <p>Healthcare Worker</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about">
-    <div class="container">
-      <h2>Our Mission</h2>
-      <p>
-        At Guardian Shield, we believe every woman deserves to feel safe, confident, and empowered wherever she goes. 
-        Our cutting-edge platform combines artificial intelligence, community support, and professional monitoring 
-        to create an unprecedented safety ecosystem. We're not just building an app – we're fostering a movement 
-        that prioritizes women's security through innovation, compassion, and unwavering dedication to protection.
-      </p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2>Get in Touch</h2>
-      <p class="contact-subtitle">Have questions or want to learn more about our safety solutions? We're here to help.</p>
-      
-      <form id="contactForm">
-        <div class="form-group">
-          <label for="name"><i class="fas fa-user"></i> Full Name</label>
-          <input type="text" id="name" name="name" required placeholder="Enter your full name" />
-        </div>
-
-        <div class="form-group">
-          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
-          <input type="email" id="email" name="email" required placeholder="Enter your email address" />
-        </div>
-
-        <div class="form-group">
-          <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" />
-        </div>
-
-        <div class="form-group">
-          <label for="message"><i class="fas fa-comment"></i> Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Tell us how we can help you..."></textarea>
-        </div>
-
-        <button type="submit">
-          <i class="fas fa-paper-plane"></i>
-          Send Message
+            Emergency
         </button>
-      </form>
+        <div class="emergency-menu">
+            <button class="emergency-btn sos" onclick="sendSOSAlert()">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>SOS</span>
+            </button>
+            <button class="emergency-btn location" onclick="shareLocation()">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Location</span>
+            </button>
+            <button class="emergency-btn safety" onclick="checkLocationSafety()">
+                <i class="fas fa-shield-alt"></i>
+                <span>Safety</span>
+            </button>
+            <button class="emergency-btn routes" onclick="getSafeRoutes()">
+                <i class="fas fa-route"></i>
+                <span>Routes</span>
+            </button>
+            <button class="emergency-btn contacts" onclick="addEmergencyContact()">
+                <i class="fas fa-phone"></i>
+                <span>Contacts</span>
+            </button>
+        </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-grid">
-        <div class="footer-section">
-          <h3><i class="fas fa-shield-alt"></i> Guardian Shield</h3>
-          <p>Empowering women through innovative safety technology and community support. Join millions of women who trust us to keep them safe.</p>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Safety Features</h2>
+                <p>Comprehensive protection tools designed for your security</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon sos-color">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>SOS Emergency</h3>
+                    <p>One-touch emergency alert that instantly notifies contacts and authorities with your exact location.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon location-color">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Live Location Sharing</h3>
+                    <p>Real-time location sharing with trusted contacts for continuous safety monitoring.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon routes-color">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Safe Route Planning</h3>
+                    <p>AI-powered route recommendations prioritizing well-lit, populated, and secure pathways.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon safety-color">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Safety Assessment</h3>
+                    <p>Real-time safety scoring of locations with community-driven insights and recommendations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon contacts-color">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Emergency Network</h3>
+                    <p>Manage trusted emergency contacts with automatic notification systems for various scenarios.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon community-color">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Community Alerts</h3>
+                    <p>Real-time safety alerts from the community about incidents and security concerns.</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="footer-section">
-          <h3>Quick Links</h3>
-          <p><a href="#home">Home</a></p>
-          <p><a href="#features">Features</a></p>
-          <p><a href="#about">About Us</a></p>
-          <p><a href="#contact">Contact</a></p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Empowering Women's Safety</h2>
+                    <p>Guardian Shield is built with the mission to create a safer world for women through innovative technology and community support. Our platform combines cutting-edge features with user-friendly design to provide comprehensive safety solutions.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Women Protected</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Emergency Support</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">Response Rate</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Cities Covered</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="footer-section">
-          <h3>Support</h3>
-          <p><a href="#">Help Center</a></p>
-          <p><a href="#">Privacy Policy</a></p>
-          <p><a href="#">Terms of Service</a></p>
-          <p><a href="#">Emergency Contacts</a></p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions or need support? We're here to help.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Support</h4>
+                            <p>support@guardianshield.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Emergency Hotline</h4>
+                            <p>1-800-GUARDIAN</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Available</h4>
+                            <p>24/7 Emergency Support</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
         </div>
-        
-        <div class="footer-section">
-          <h3>Emergency</h3>
-          <p style="color: #ff6b6b; font-weight: bold;">24/7 Emergency: 911</p>
-          <p><a href="tel:+1-800-SAFE-NOW">Support: 1-800-SAFE-NOW</a></p>
-          <p><a href="mailto:help@guardianshield.com">help@guardianshield.com</a></p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Guardian Shield</span>
+                    </div>
+                    <p>Empowering women's safety through innovation and technology.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-emergency">
+                    <h4>Emergency</h4>
+                    <ul>
+                        <li><a href="tel:911">Emergency: 911</a></li>
+                        <li><a href="tel:1800GUARDIAN">Support: 1-800-GUARDIAN</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guardian Shield. All rights reserved.</p>
+            </div>
         </div>
-      </div>
-      
-      <div class="social-links">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; 2024 Guardian Shield. All rights reserved. | Protecting women worldwide with cutting-edge safety technology.</p>
-      </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login to Guardian Shield</h3>
+                <button class="modal-close" onclick="closeModal('loginModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+            </form>
+            <p class="auth-switch">
+                Don't have an account? 
+                <a href="#" onclick="switchToRegister()">Register here</a>
+            </p>
+        </div>
     </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Join Guardian Shield</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <input type="text" id="registerName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="registerEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="registerPhone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="registerPassword" placeholder="Password (min 6 characters)" required>
+                </div>
+                <button type="submit" class="btn btn-primary full-width">
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+                </button>
+            </form>
+            <p class="auth-switch">
+                Already have an account? 
+                <a href="#" onclick="switchToLogin()">Login here</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

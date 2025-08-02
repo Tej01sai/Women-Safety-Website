@@ -1,0 +1,33 @@
+{
+  "name": "guardian-shield-server",
+  "version": "1.0.0",
+  "description": "Women Safety Platform Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "server": "node index.js",
+    "watch": "nodemon index.js"
+  },
+  "keywords": [
+    "women",
+    "safety",
+    "security",
+    "emergency"
+  ],
+  "author": "Guardian Shield Team",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^7.8.7",
+    "nodemailer": "^6.10.1",
+    "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
