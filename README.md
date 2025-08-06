@@ -15,9 +15,9 @@ A web-based platform designed to enhance the safety and security of women using 
 ## 💻 Tech Stack
 
 - **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Node.js / Express (or mention if you're using Python/FastAPI, etc.)
+- **Backend**: Node.js / Express 
 - **Database**: MongoDB
-- **Others**: Map APIs (Google Maps or Leaflet), Tailwind CSS (if applicable)
+//
 
 
 
