@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
+
 app.use(cors({
     origin: ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5500'],
     credentials: true
@@ -106,7 +106,7 @@ try {
     });
     
     locationRoutes.post('/safety-check', (req, res) => {
-        const safetyScore = Math.random() * 3 + 7; // 7-10 range
+        const safetyScore = Math.random() * 3 + 7; 
         res.json({
             isSafeZone: safetyScore > 7.5,
             safetyScore: parseFloat(safetyScore.toFixed(1)),
@@ -152,7 +152,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Serve frontend for all other routes
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
@@ -168,7 +168,7 @@ app.use((err, req, res, next) => {
 // MongoDB Connection
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/womensafety');
+        const conn = await mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://sai727868:Sai1234@cluster0.p1wnggu.mongodb.net/women-safety?retryWrites=true&w=majority');
         console.log(`✓ MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
         console.log('⚠ MongoDB connection failed, running without database');
